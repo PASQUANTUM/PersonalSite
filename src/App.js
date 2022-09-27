@@ -5,7 +5,7 @@ import {lightTheme, darkTheme, GlobalStyles} from './themes.js';
 import { Image } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {UserAuth} from './contexts/AuthContext'
 const LOGO = require('./assets/LOGO.png')
@@ -18,14 +18,12 @@ function App() {
 
   const [theme, setTheme] = useState('dark')
   const {user,logout} = UserAuth()
-  const navigate = useNavigate()
   const [error, setError] = useState('');
 
   async function handleLogout() {
     setError("")
     try {
       await logout()
-      navigate('/login')
     } catch {
       setError("Failed to log out")
     }
@@ -48,7 +46,7 @@ function App() {
         </div>}
         
         {user && <div className="position-absolute top-0 end-0">
-          <Link to='/signup'><Button onClick={handleLogout} variant="outline-danger">Log Out</Button></Link>
+          <Link to=''><Button onClick={handleLogout} variant="outline-danger">Log Out</Button></Link>
         </div>}
         
       </StyledApp>
