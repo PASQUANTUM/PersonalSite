@@ -48,7 +48,7 @@ function App() {
         </div>}
         
         {user && <div className="position-absolute top-0 end-0">
-          <Button variant="link" onClick={handleLogout}>Log Out</Button>
+          <Link to='/signup'><Button onClick={handleLogout} variant="outline-danger">Log Out</Button></Link>
         </div>}
         
       </StyledApp>

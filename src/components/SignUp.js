@@ -41,7 +41,7 @@ export default function SignUp() {
         </Form.Group>
       </Form>
       <GoogleButton className='rounded position-relative start-50 translate-middle'/>
-      {error && <Alert variant="danger">{error}</Alert>}
+      {error && <Alert className='w-50 start-50 translate-middle'variant="danger">{error}</Alert>}
     </div>
   )
 }

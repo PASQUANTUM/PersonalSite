@@ -27,6 +27,10 @@ export const AuthContextProvider = ({ children }) => {
       return signOut(auth)
   }
 
+  const resetPassword = (email)  => {
+    return sendPasswordResetEmail(auth, email)
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
@@ -37,8 +41,10 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
+  const value = { signup, user, logout, login, resetPassword}
+
   return (
-    <UserContext.Provider value={{ signup, user, logout, login }}>
+    <UserContext.Provider value={value}>
       {children}
     </UserContext.Provider>
   );

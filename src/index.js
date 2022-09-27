@@ -6,6 +6,7 @@ import { BrowserRouter,Routes ,Route} from 'react-router-dom';
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
 import Dashboard from './components/Dashboard';
+import ForgotPassword from './components/ForgotPassword';
 import { AuthContextProvider } from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +18,7 @@ root.render(
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/login' element={<LogIn/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/forgot-password' element={<ForgotPassword/>}/>
       </Routes>
     </BrowserRouter>
   </AuthContextProvider>
