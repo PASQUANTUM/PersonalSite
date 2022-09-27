@@ -1,0 +1,12 @@
+@import-normalize;
+
+
+body{
+    overflow-x: hidden;
+}
+
+.topbar{
+    height: 39px;
+    background-color:darkgrey;
+    width:100%;
+}
