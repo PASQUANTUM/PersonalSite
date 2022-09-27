@@ -2,9 +2,8 @@ import './css/app.css';
 import React, {useState} from "react";
 import  styled, { ThemeProvider } from 'styled-components';
 import {lightTheme, darkTheme, GlobalStyles} from './themes.js';
-import { Image } from 'react-bootstrap';
+import { Image,Alert,ToggleButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ToggleButton from 'react-bootstrap/ToggleButton';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import {UserAuth} from './contexts/AuthContext'
@@ -48,6 +47,8 @@ function App() {
         {user && <div className="position-absolute top-0 end-0">
           <Link to=''><Button onClick={handleLogout} variant="outline-danger">Log Out</Button></Link>
         </div>}
+
+        {error && <Alert className='w-50 start-50 translate-middle'variant="danger">{error}</Alert>}
         
       </StyledApp>
     </ThemeProvider>

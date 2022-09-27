@@ -1,7 +1,7 @@
-import React, { useState } from "react"
-import { Card, Button, Alert } from "react-bootstrap"
+import React from "react"
+import { Card } from "react-bootstrap"
 import { UserAuth } from "../contexts/AuthContext"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function Dashboard() {
   const {user} = UserAuth()
