@@ -3,6 +3,7 @@ import { Button,Form,Alert } from 'react-bootstrap';
 import {Link,useNavigate} from 'react-router-dom';
 import {GoogleButton} from 'react-google-button';
 import { UserAuth } from '../contexts/AuthContext';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 export default function SignUp() {
@@ -11,8 +12,19 @@ export default function SignUp() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const [error, setError] = useState('');
-  const {signup} = UserAuth();
+  const {googleSignIn, signup} = UserAuth();
   const navigate = useNavigate();
+  const auth = getAuth()
+
+  const handleGoogleSignin= async (e) => {
+    e.preventDefault();
+    try {
+      setError('')
+      await googleSignIn();
+    } catch (e) {
+      setError(e.message);
+      console.log(e.message);
+    }};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,11 +34,13 @@ export default function SignUp() {
     try {
       setError('')
       await signup(emailRef.current.value, passwordRef.current.value);
-      navigate('/dashboard')
     } catch (e) {
       setError(e.message);
       console.log(e.message);
     }};
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {navigate('')}});
 
   return (
     <div className ='container'>
@@ -40,8 +54,11 @@ export default function SignUp() {
           <Link className='m-3' to='/login'>Already Signed In?</Link>
         </Form.Group>
       </Form>
-      <GoogleButton className='rounded position-relative start-50 translate-middle'/>
-      {error && <Alert className='w-50 start-50 translate-middle'variant="danger">{error}</Alert>}
+      <GoogleButton onClick={handleGoogleSignin}className='rounded position-relative start-50 translate-middle'/>
+      {error && <Alert className='w-50 top-0start-50 translate-middle'variant="danger">{error}</Alert>}
+      
+      
+      
     </div>
   )
 }

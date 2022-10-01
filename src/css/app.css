@@ -1,12 +1,17 @@
 @import-normalize;
 
-
 body{
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .topbar{
     height: 39px;
     background-color:darkgrey;
     width:100%;
+}
+.profilepicture{
+    width:38px;
+    height:38px;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
 }

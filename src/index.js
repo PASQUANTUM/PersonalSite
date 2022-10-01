@@ -12,14 +12,14 @@ import { AuthContextProvider } from './contexts/AuthContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContextProvider>
-    <BrowserRouter>
-      <App />
-      <Routes>
-          <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/login' element={<LogIn/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/forgot-password' element={<ForgotPassword/>}/>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <App />
+        <Routes>
+            <Route path='/signup' element={<SignUp/>}/>
+            <Route path='/login' element={<LogIn/>}/>
+            <Route path='/dashboard' element={<Dashboard/>}/>
+            <Route path='/forgot-password' element={<ForgotPassword/>}/>
+        </Routes>
+      </BrowserRouter>
   </AuthContextProvider>
 );

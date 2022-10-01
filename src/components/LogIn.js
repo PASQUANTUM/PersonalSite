@@ -2,25 +2,40 @@ import {React, useRef, useState} from 'react';
 import { Button,Form,Alert } from 'react-bootstrap';
 import {Link,useNavigate} from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
+import {GoogleButton} from 'react-google-button';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function LogIn() {
 
   const emailRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState('');
-  const {login} = UserAuth();
+  const {googleSignIn, login} = UserAuth();
   const navigate = useNavigate();
+  const auth = getAuth();
+
+  const handleGoogleSignin= async (e) => {
+    e.preventDefault();
+    try {
+      setError('')
+      await googleSignIn();
+    } catch (e) {
+      setError(e.message);
+      console.log(e.message);
+    }};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
       await login(emailRef.current.value, passwordRef.current.value);
-      navigate('/dashboard')
     } catch (e) {
       setError(e.message);
       console.log(e.message);
     }};
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {navigate('')}});
 
   return (
     <div className ='container'>
@@ -33,6 +48,7 @@ export default function LogIn() {
             <Link className='m-3' to='/forgot-password'>Forgot Password?</Link>
           </Form.Group>
         </Form>
+        <GoogleButton onClick={handleGoogleSignin}className='rounded position-relative start-50 translate-middle'/>
         {error && <Alert className='w-50 start-50 translate-middle'variant="danger">{error}</Alert>}
     </div>
   )
